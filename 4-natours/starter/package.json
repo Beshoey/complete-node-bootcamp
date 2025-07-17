@@ -5,19 +5,34 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start": "dotenvx run -f .env.local node server.js",
+    "start:dev": "dotenvx run -f .env.local -- nodemon server.js",
+    "lint": "eslint . --ext .js"
   },
   "dependencies": {
-    "express": "^5.1.0",
-    "morgan": "^1.10.0"
+    "@dotenvx/dotenvx": "~1.47.5",
+    "dotenv": "~17.2.0",
+    "express": "~5.1.0",
+    "mongoose": "^8.16.3",
+    "morgan": "~1.10.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/morgan": "^1.9.10",
-    "nodemon": "^2.0.22"
+    "@eslint/js": "^9.31.0",
+    "@types/eslint__js": "~8.42.3",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.0",
+    "@types/express": "~5.0.3",
+    "@types/morgan": "~1.9.10",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-n": "^17.21.0",
+    "eslint-plugin-prettier": "^5.5.1",
+    "eslint-plugin-unicorn": "^59.0.1",
+    "nodemon": "^3.1.10",
+    "prettier": "3.6.2"
   }
 }

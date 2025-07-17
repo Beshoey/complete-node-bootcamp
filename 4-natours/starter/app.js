@@ -1,49 +1,17 @@
 import express from 'express';
 import morgan from 'morgan';
-import {
-  createTour,
-  deleteTour,
-  getAllTours,
-  getTour,
-  updateTour,
-} from './lib';
+import tourRouter from './routes/tour-routes.js';
+import userRouter from './routes/user-routes.js';
 
-const app = express();
+export const app = express();
 
-// 1) MIDDLEWARES
+// Development logging use morgan to log requests
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+  app.use(morgan('combined'));
 }
-
+// Body parser for reading data from body
 app.use(express.json());
-const port = 3000;
 
-// app.get('/api/v1/tours', getAllTours);
-
-// app.post('/api/v1/tours', createTour);
-
-// app.get('/api/v1/tours/:id', getTour);
-
-// app.patch('/api/v1/tours/:id', updateTour);
-
-// app.delete('/api/v1/tours/:id', deleteTour);
-
-// Routes mapping
-
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
-app
-  .route('/api/v1/tours/:id')
-  .get(getTour)
-  .patch(updateTour)
-  .delete(deleteTour);
-
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
-app
-  .route('/api/v1/users/:id')
-  .get(getUser)
-  .patch(updateUser)
-  .delete(deleteUser);
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Use Routers
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
